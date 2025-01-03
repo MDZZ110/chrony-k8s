@@ -25,6 +25,9 @@ docker-build:
 	@echo MY_GITREF is $(MY_GITREF)
 	$(DOCKERCMD) build -f Dockerfile -t $(OPV) .
 
+docker-buildx-build:
+	$(DOCKERCMD) buildx build --platform linux/amd64,linux/arm64 -t $(OPV) --push .
+
 ## cleans docker image
 clean:
 	$(DOCKERCMD) image rm $(OPV) | true
